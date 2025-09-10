@@ -1,0 +1,29 @@
+#include <stdio.h>
+#define SIZE 50
+int q[SIZE], front=0, rear=-1;
+
+void enqueue(int val){
+    if(rear==SIZE-1) printf("Overflow\n");
+    else q[++rear]=val;
+}
+void dequeue(){
+    if(front>rear) printf("Underflow\n");
+    else printf("Dequeued: %d\n",q[front++]);
+}
+void display(){
+    if(front>rear) printf("Queue Empty\n");
+    else for(int i=front;i<=rear;i++) printf("%d ",q[i]);
+    printf("\n");
+}
+
+int main(){
+    int ch,val;
+    do{
+        printf("\n1.Enqueue 2.Dequeue 3.Display 4.Exit\n");
+        scanf("%d",&ch);
+        if(ch==1){ printf("Value: "); scanf("%d",&val); enqueue(val); }
+        else if(ch==2) dequeue();
+        else if(ch==3) display();
+    }while(ch!=4);
+    return 0;
+}
