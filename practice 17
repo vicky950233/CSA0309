@@ -1,0 +1,13 @@
+#include <stdio.h>
+int main(){
+ int a[10],n,i,key,l=0,h,mid,f=0;scanf("%d",&n);
+ for(i=0;i<n;i++)scanf("%d",&a[i]);scanf("%d",&key);
+ // Linear
+ for(i=0;i<n;i++)if(a[i]==key){printf("Linear:%d\n",i);f=1;break;}
+ if(!f)printf("Not Found\n");
+ // Binary
+ h=n-1;f=0;
+ while(l<=h){mid=(l+h)/2;if(a[mid]==key){printf("Binary:%d",mid);f=1;break;}else if(a[mid]<key)l=mid+1;else h=mid-1;}
+ if(!f)printf("Not Found");
+}
+
