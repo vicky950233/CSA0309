@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{int d;struct Node*n;};
+struct Node*reverse(struct Node*h){
+ struct Node*p=NULL,*c=h,*n;
+ while(c){n=c->n;c->n=p;p=c;c=n;}return p;
+}
+void display(struct Node*h){while(h){printf("%d ",h->d);h=h->n;}}
+int main(){
+ struct Node*a=malloc(sizeof(*a)),*b=malloc(sizeof(*b)),*c=malloc(sizeof(*c));
+ a->d=1;b->d=2;c->d=3;a->n=b;b->n=c;c->n=NULL;
+ a=reverse(a);display(a);
+}
