@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{char d;struct Node*n;};
+int main(){
+    struct Node *h=NULL,*t=NULL,*p;
+    char s[50];scanf("%s",s);
+    for(int i=0;s[i];i++){p=malloc(sizeof(*p));p->d=s[i];p->n=NULL;if(!h)h=t=p;else{t->n=p;t=p;}}
+    char arr[50];int i=0;
+    for(p=h;p;p=p->n)arr[i++]=p->d;
+    int l=0,r=i-1,f=1;
+    while(l<r){if(arr[l++]!=arr[r--]){f=0;break;}}
+    printf(f?"Palindrome":"Not Palindrome");
+}
