@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{int d;struct Node*l,*r;};
+struct Node*newNode(int v){struct Node*t=malloc(sizeof(*t));t->d=v;t->l=t->r=NULL;return t;}
+void inorder(struct Node*r){if(r){inorder(r->l);printf("%d ",r->d);inorder(r->r);}}
+void preorder(struct Node*r){if(r){printf("%d ",r->d);preorder(r->l);preorder(r->r);}}
+void postorder(struct Node*r){if(r){postorder(r->l);postorder(r->r);printf("%d ",r->d);}}
+int main(){
+ struct Node*r=newNode(1);
+ r->l=newNode(2);r->r=newNode(3);r->l->l=newNode(4);r->l->r=newNode(5);
+ inorder(r);printf("\n");preorder(r);printf("\n");postorder(r);
+}
