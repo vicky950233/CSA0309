@@ -1,0 +1,8 @@
+#include <stdio.h>
+#include <ctype.h>
+int main() {
+    char s[50]; int i, f = 1;
+    scanf("%s", s);
+    for (i = 0; s[i]; i++) if (!isalnum(s[i])) { f = 0; break; }
+    printf(f ? "Valid" : "Invalid");
+}
