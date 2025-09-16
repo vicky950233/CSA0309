@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{int d,h;struct Node*l,*r;};
+int H(struct Node*n){return n?n->h:0;}
+int max(int a,int b){return a>b?a:b;}
+struct Node*rotR(struct Node*y){struct Node*x=y->l; y->l=x->r; x->r=y; y->h=1+max(H(y->l),H(y->r)); x->h=1+max(H(x->l),H(x->r)); return x;}
+struct Node*rotL(struct Node*x){struct Node*y=x->r; x->r=y->l; y->l=x; x->h=1+max(H(x->l),H(x->r)); y->h=1+max(H(y->l),H(y->r)); return y;}
+int BF(struct Node*n){return n?H(n->l)-H(n->r):0;}
+struct Node*newNode(int k){struct Node*n=malloc(sizeof(*n));n->d=k;n->l=n->r=NULL;n->h=1;return n;}
+struct Node*insert(struct Node*n,int k){
+ if(!n)return newNode(k);
+ if(k<n->d)n->l=insert(n->l,k);
+ else if(k>n->d)n->r=insert(n->r,k);
+ else return n;
+ n->h=1+max(H(n->l),H(n->r));
+ int b=BF(n);
+ if(b>1&&k<n->l->d)return rotR(n);
+ if(b<-1&&k>n->r->d)return rotL(n);
+ if(b>1&&k>n->l->d){n->l=rotL(n->l);return rotR(n);}
+ if(b<-1&&k<n->r->d){n->r=rotR(n->r);return rotL(n);}
+ return n;
+}
+void inorder(struct Node*r){if(r){inorder(r->l);printf("%d ",r->d);inorder(r->r);}}
+int main(){int n,i,x;scanf("%d",&n);struct Node*r=NULL;
+ for(i=0;i<n;i++){scanf("%d",&x);r=insert(r,x);}inorder(r);
+}
