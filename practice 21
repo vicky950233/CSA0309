@@ -1,0 +1,9 @@
+#include <stdio.h>
+#include <string.h>
+int main(){
+    char h[50], n[20];
+    scanf("%s%s", h, n);
+    char *p = strstr(h, n);
+    printf(p ? "Found at index %ld" : "Not Found", p ? p - h : 0);
+}
+
