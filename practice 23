@@ -1,0 +1,12 @@
+#include <stdio.h>
+#define V 4
+void path(int g[V][V],int u,int d,int vis[V],int p[],int idx){
+    vis[u]=1; p[idx]=u;
+    if(u==d){for(int i=0;i<=idx;i++)printf("%d ",p[i]);printf("\n");}
+    else for(int i=0;i<V;i++)if(g[u][i]&&!vis[i])path(g,i,d,vis,p,idx+1);
+    vis[u]=0;
+}
+int main(){
+    int g[V][V]={{0,1,1,0},{1,0,1,1},{1,1,0,1},{0,1,1,0}},vis[V]={0},p[V];
+    path(g,0,3,vis,p,0);
+}
