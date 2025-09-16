@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <limits.h>
+int main() {
+    int n, rev = 0;
+    scanf("%d", &n);
+    while (n) {
+        int d = n % 10;
+        if (rev > INT_MAX / 10 || rev < INT_MIN / 10) { printf("0"); return 0; }
+        rev = rev * 10 + d;
+        n /= 10;
+    }
+    printf("%d", rev);
+}
