@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{int d;struct Node*l,*r;};
+struct Node*create(int v){
+    if(v==-1)return NULL;
+    struct Node*t=malloc(sizeof(*t));
+    t->d=v;int x,y;
+    scanf("%d%d",&x,&y);
+    t->l=create(x);t->r=create(y);return t;
+}
+void inorder(struct Node*r){if(r){inorder(r->l);printf("%d ",r->d);inorder(r->r);}}
+int main(){int root;scanf("%d",&root);struct Node*r=create(root);inorder(r);}
