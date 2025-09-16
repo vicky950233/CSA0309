@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{int d;struct Node*n;};
+int length(struct Node*h){int c=0;while(h){c++;h=h->n;}return c;}
+struct Node*intersect(struct Node*a,struct Node*b){
+ int l1=length(a),l2=length(b),d=abs(l1-l2);
+ if(l1>l2)while(d--)a=a->n;else while(d--)b=b->n;
+ while(a&&b){if(a==b)return a;a=a->n;b=b->n;}return NULL;
+}
+int main(){
+ struct Node a={1,NULL},b={2,NULL},c={3,NULL},d={4,NULL};
+ a.n=&c;b.n=&c;c.n=&d;
+ struct Node*res=intersect(&a,&b);
+ printf(res?"%d":"No Intersection",res?res->d:0);
+}
