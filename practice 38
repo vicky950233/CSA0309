@@ -1,0 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{int d;struct Node*p,*n;};
+void display(struct Node*h){while(h){printf("%d ",h->d);h=h->n;}}
+int main(){
+ struct Node*a=malloc(sizeof(*a)),*b=malloc(sizeof(*b)),*c=malloc(sizeof(*c));
+ a->d=1;b->d=2;c->d=3;
+ a->p=NULL;a->n=b;b->p=a;b->n=c;c->p=b;c->n=NULL;
+ display(a);
+}
