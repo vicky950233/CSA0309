@@ -1,0 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{int d;struct Node*n;};
+void insert(struct Node**h,int v){
+ struct Node*t=malloc(sizeof(*t));t->d=v;t->n=*h;*h=t;
+}
+void display(struct Node*h){while(h){printf("%d ",h->d);h=h->n;}}
+int main(){
+ struct Node*h=NULL;insert(&h,10);insert(&h,20);insert(&h,30);display(h);
+}
