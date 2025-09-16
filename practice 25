@@ -1,0 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{int d;struct Node*n;};
+int main(){
+    int n,c=0;scanf("%d",&n);
+    struct Node *h=NULL,*t=NULL,*p;
+    for(int i=0;i<n;i++){p=malloc(sizeof(*p));scanf("%d",&p->d);p->n=NULL;if(!h)h=t=p;else{t->n=p;t=p;}}
+    while(h){c++;h=h->n;} printf("Count:%d",c);
+}
