@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node{int d;struct Node*l,*r;};
+struct Node*newNode(int k){struct Node*t=malloc(sizeof(*t));t->d=k;t->l=t->r=NULL;return t;}
+struct Node*insert(struct Node*r,int k){
+ if(!r)return newNode(k);
+ if(k<r->d)r->l=insert(r->l,k);else r->r=insert(r->r,k);return r;
+}
+struct Node*min(struct Node*r){while(r->l)r=r->l;return r;}
+struct Node*max(struct Node*r){while(r->r)r=r->r;return r;}
+int search(struct Node*r,int k){if(!r)return 0;if(k==r->d)return 1;return k<r->d?search(r->l,k):search(r->r,k);}
+int main(){
+ struct Node*r=NULL;int n,x;scanf("%d",&n);
+ for(int i=0;i<n;i++){scanf("%d",&x);r=insert(r,x);}
+ scanf("%d",&x);printf("%s\n",search(r,x)?"Found":"Not Found");
+ printf("Min:%d Max:%d",min(r)->d,max(r)->d);
+}
