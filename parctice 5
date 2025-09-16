@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node { int data; struct Node* next; };
+struct Node* create(int n) {
+    struct Node *head = NULL, *t, *c;
+    for (int i = 0; i < n; i++) {
+        t = malloc(sizeof(*t)); scanf("%d", &t->data);
+        t->next = NULL; if (!head) head = c = t; else { c->next = t; c = t; }
+    } return head;
+}
+void display(struct Node* h) { while (h) { printf("%d ", h->data); h = h->next; } }
+int main() {
+    int n, m; scanf("%d%d", &n, &m);
+    struct Node *h1 = create(n), *h2 = create(m);
+    struct Node *t = h1; while (t->next) t = t->next; t->next = h2;
+    display(h1);
+}
+
+
